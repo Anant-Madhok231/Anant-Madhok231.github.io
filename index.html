@@ -1,0 +1,192 @@
+<!--
+    Canvas Grade Checker
+    Copyright (c) 2024
+    All rights reserved.
+    
+    This software and associated documentation files (the "Software") are the
+    proprietary and confidential property of the owner. Unauthorized copying,
+    modification, distribution, or use of this Software, via any medium, is
+    strictly prohibited without the express written permission of the owner.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas Grade Checker - Grade Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>✨ Canvas Grade Checker ✨</h1>
+            <p class="subtitle">Enter your scores like "85/100" and see what you need on future assignments!</p>
+            <div class="header-controls">
+                <div class="dropdown-group">
+                    <label>🎨 Theme</label>
+                    <select id="theme-selector" class="anime-dropdown">
+                        <option value="default">🌈 Default Gradient</option>
+                        <option value="dark">🌙 Dark Mode</option>
+                        <option value="light">☀️ Light Mode</option>
+                        <option value="sakura">🌸 Sakura Pink</option>
+                        <option value="ocean">🌊 Ocean Blue</option>
+                        <option value="neon">💜 Neon Purple</option>
+                        <option value="sunset">🌅 Sunset Orange</option>
+                        <option value="mint">🍃 Mint Green</option>
+                        <option value="forest">🌲 Forest Green</option>
+                        <option value="lavender">💐 Lavender Dream</option>
+                        <option value="coral">🐚 Coral Reef</option>
+                        <option value="aurora">🌌 Aurora Borealis</option>
+                        <option value="cyber">🤖 Cyber Punk</option>
+                        <option value="rose">🌹 Rose Gold</option>
+                        <option value="midnight">🌃 Midnight Blue</option>
+                        <option value="sunrise">🌄 Sunrise</option>
+                        <option value="oceanic">🌊 Oceanic Depths</option>
+                        <option value="cherry">🍒 Cherry Blossom</option>
+                        <option value="galaxy">🌠 Galaxy</option>
+                        <option value="fire">🔥 Fire</option>
+                        <option value="ice">❄️ Ice</option>
+                    </select>
+                </div>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <!-- Grading Scale Configuration -->
+            <section class="card anime-card">
+                <h2>📚 Grading Scale</h2>
+                <div class="grading-scale">
+                    <div class="scale-item">
+                        <label>A+</label>
+                        <input type="number" id="scale-a-plus" value="97" min="0" max="100" step="0.1">
+                        <span>%</span>
+                    </div>
+                    <div class="scale-item">
+                        <label>A</label>
+                        <input type="number" id="scale-a" value="93" min="0" max="100" step="0.1">
+                        <span>%</span>
+                    </div>
+                    <div class="scale-item">
+                        <label>A-</label>
+                        <input type="number" id="scale-a-minus" value="90" min="0" max="100" step="0.1">
+                        <span>%</span>
+                    </div>
+                    <div class="scale-item">
+                        <label>B+</label>
+                        <input type="number" id="scale-b-plus" value="87" min="0" max="100" step="0.1">
+                        <span>%</span>
+                    </div>
+                    <div class="scale-item">
+                        <label>B</label>
+                        <input type="number" id="scale-b" value="83" min="0" max="100" step="0.1">
+                        <span>%</span>
+                    </div>
+                    <div class="scale-item">
+                        <label>B-</label>
+                        <input type="number" id="scale-b-minus" value="80" min="0" max="100" step="0.1">
+                        <span>%</span>
+                    </div>
+                    <div class="scale-item">
+                        <label>C+</label>
+                        <input type="number" id="scale-c-plus" value="77" min="0" max="100" step="0.1">
+                        <span>%</span>
+                    </div>
+                    <div class="scale-item">
+                        <label>C</label>
+                        <input type="number" id="scale-c" value="73" min="0" max="100" step="0.1">
+                        <span>%</span>
+                    </div>
+                    <div class="scale-item">
+                        <label>C-</label>
+                        <input type="number" id="scale-c-minus" value="70" min="0" max="100" step="0.1">
+                        <span>%</span>
+                    </div>
+                    <div class="scale-item">
+                        <label>D+</label>
+                        <input type="number" id="scale-d-plus" value="67" min="0" max="100" step="0.1">
+                        <span>%</span>
+                    </div>
+                    <div class="scale-item">
+                        <label>D</label>
+                        <input type="number" id="scale-d" value="60" min="0" max="100" step="0.1">
+                        <span>%</span>
+                    </div>
+                    <div class="scale-item">
+                        <label>D-</label>
+                        <input type="number" id="scale-d-minus" value="57" min="0" max="100" step="0.1">
+                        <span>%</span>
+                    </div>
+                    <div class="scale-item">
+                        <label>F</label>
+                        <input type="number" id="scale-f" value="0" min="0" max="100" step="0.1" disabled>
+                        <span>%</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Grade Categories -->
+            <section class="card anime-card">
+                <h2>📝 Your Categories</h2>
+                <p class="help-text" style="margin-bottom: 20px; color: #ff6b9d; font-weight: 600;">
+                    Add categories and assignments. Mark future assignments and set your target grade to see what you need!
+                </p>
+                <div id="categories-container">
+                    <!-- Categories will be added here dynamically -->
+                </div>
+                <button id="add-category-btn" class="btn-secondary anime-btn">✨ + Add Category</button>
+                <div class="weight-total">
+                    <strong>Total Weight: <span id="total-weight">0</span>%</strong>
+                </div>
+            </section>
+
+            <!-- Results Section -->
+            <section class="card results-card">
+                <h2>Your Current Grade</h2>
+                <div class="results-grid">
+                    <div class="result-box">
+                        <div class="result-label">Current Grade</div>
+                        <div class="result-value" id="current-grade">--</div>
+                        <div class="result-percentage" id="current-percentage">0.00%</div>
+                    </div>
+                    <div class="result-box">
+                        <div class="result-label">Letter Grade</div>
+                        <div class="result-value" id="letter-grade">--</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Target Grade Calculator -->
+            <section class="card anime-card">
+                <h2>🎯 What Do I Need Calculator?</h2>
+                <p class="help-text">Select your target letter grade and see what you need on your future assignments!</p>
+                <div class="calculator-form">
+                    <div class="form-group">
+                        <label for="target-grade">🎯 Target Letter Grade</label>
+                        <select id="target-grade" class="anime-dropdown target-grade-select">
+                            <option value="A+">A+</option>
+                            <option value="A" selected>A</option>
+                            <option value="A-">A-</option>
+                            <option value="B+">B+</option>
+                            <option value="B">B</option>
+                            <option value="B-">B-</option>
+                            <option value="C+">C+</option>
+                            <option value="C">C</option>
+                            <option value="C-">C-</option>
+                            <option value="D+">D+</option>
+                            <option value="D">D</option>
+                            <option value="D-">D-</option>
+                            <option value="F">F</option>
+                        </select>
+                        <div style="margin-top: 8px; font-size: 0.9rem; color: #666;">
+                            Target: <span id="target-grade-percentage">93.0%</span>
+                        </div>
+                    </div>
+                    <div id="future-assignments-result" class="calculation-result"></div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
